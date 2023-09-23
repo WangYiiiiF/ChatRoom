@@ -13,10 +13,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+<<<<<<< HEAD
 @Slf4j
 @ChannelHandler.Sharable
 public class MessageCodec extends ByteToMessageCodec<Message> {
 
+=======
+//编解码器 不可分享
+
+@Slf4j
+public class MessageCodec extends ByteToMessageCodec<Message> {
+
+    //编码器
+>>>>>>> b11a9fe (Initial commit)
     @Override
     public void encode(ChannelHandlerContext ctx, Message msg, ByteBuf out) throws Exception {
         // 1. 4 字节的魔数
@@ -42,8 +51,14 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         out.writeBytes(bytes);
     }
 
+<<<<<<< HEAD
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+=======
+    //解码器
+    @Override
+    public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+>>>>>>> b11a9fe (Initial commit)
         int magicNum = in.readInt();
         byte version = in.readByte();
         byte serializerType = in.readByte();
@@ -55,8 +70,13 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         in.readBytes(bytes, 0, length);
         ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
         Message message = (Message) ois.readObject();
+<<<<<<< HEAD
         log.debug("{}, {}, {}, {}, {}, {}", magicNum, version, serializerType, messageType, sequenceId, length);
         log.debug("{}", message);
+=======
+        log.debug("magicNum：{}, version：{}, serializerType：{}, messageType：{}, sequenceId：{}, length：{}", magicNum, version, serializerType, messageType, sequenceId, length);
+        log.debug("message：{}", message);
+>>>>>>> b11a9fe (Initial commit)
         out.add(message);
     }
 }
