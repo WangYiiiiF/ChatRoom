@@ -43,7 +43,6 @@ public class ChatClient {
                     ch.pipeline().addLast(new ProcotolFrameDecoder());
                     ch.pipeline().addLast(LOGGING_HANDLER);
                     ch.pipeline().addLast(MESSAGE_CODEC);
-
                     ch.pipeline().addLast("lOginHandler",new ChannelInboundHandlerAdapter(){
 
                         @Override
