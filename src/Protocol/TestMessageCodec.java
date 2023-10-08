@@ -16,7 +16,7 @@ public class TestMessageCodec {
 
         //encode
         LoginRequestMessage message = new LoginRequestMessage("zhangsan","123");
-        //出战方向
+        //出站方向
         channel.writeOutbound(message);
 
         //decode
